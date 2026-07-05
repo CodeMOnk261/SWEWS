@@ -1,0 +1,545 @@
+# UI/UX Design Prompt — Space Weather Early Warning System (SWEWS)
+
+Design a **research-grade web application** for an AI-powered **Space Weather Early Warning System**. The interface should look like software used in a satellite mission control center, not a traditional business dashboard. The visual identity should convey scientific precision, trust, and advanced technology while remaining clean, modern, and highly readable.
+
+## Design Style
+
+The aesthetic should combine inspiration from:
+
+* NASA Mission Control
+* ESA Space Weather Portal
+* SpaceX Mission Control
+* Apple VisionOS
+* Linear.app
+* Bloomberg Terminal
+
+Keywords:
+
+Scientific, Minimal, Futuristic, Premium, Aerospace, Clean, Professional, High-tech, Dark UI, Data-centric, Elegant.
+
+Avoid:
+
+* Glassmorphism overload
+* Neon cyberpunk effects
+* Gaming UI
+* Bright gradients everywhere
+* Cartoon illustrations
+* Excessive shadows
+* Large colorful statistic cards
+
+The application should feel like a scientific instrument used by engineers and researchers.
+
+---
+
+# Color Palette
+
+Background:
+Deep Space Black (#05070A)
+
+Secondary Background:
+#10141A
+
+Panels:
+#151A21
+
+Borders:
+Very subtle (#2A3038)
+
+Primary Accent:
+Electric Blue
+
+Secondary Accent:
+Deep Cyan
+
+Success:
+Emerald Green
+
+Warning:
+Amber
+
+Critical:
+Crimson Red
+
+Text:
+Primary: White
+Secondary: Light Gray
+Muted: Slate Gray
+
+All glow effects should be extremely subtle.
+
+---
+
+# Typography
+
+Headings:
+Space Grotesk
+
+Body:
+Inter
+
+Numerical Data:
+JetBrains Mono
+
+Large spacing with excellent readability.
+
+---
+
+# Overall Layout
+
+Use a three-column professional workstation layout.
+
+Top Navigation
+
+↓
+
+Left Navigation Sidebar
+
+↓
+
+Central Mission Workspace
+
+↓
+
+Right Intelligence Panel
+
+Everything should have generous whitespace.
+
+Rounded corners should be subtle (10–14px).
+
+Panels should have soft borders instead of heavy shadows.
+
+---
+
+# Left Sidebar
+
+Collapsed professional navigation with icons.
+
+Dashboard
+
+Live Space Weather
+
+Earth Visualization
+
+Satellite Network
+
+Predictions
+
+Historical Replay
+
+Research Explorer
+
+AI Models
+
+Settings
+
+No colorful backgrounds.
+
+Simple monochrome icons.
+
+---
+
+# Top Navigation
+
+Application Name
+
+Space Weather Early Warning System
+
+Status Indicator
+
+Live Connection
+
+Last Updated Time
+
+Current UTC Time
+
+Model Version
+
+Dark/Light Toggle
+
+User Profile
+
+Minimal height.
+
+No oversized header.
+
+---
+
+# Hero Section
+
+Display
+
+Current Space Weather Status
+
+Live Mission State
+
+Prediction Confidence
+
+Operational Status
+
+Mission Time
+
+This section should be elegant and compact.
+
+---
+
+# Central Visualization
+
+Create a beautiful animated Earth visualization.
+
+Requirements:
+
+Rotating Earth
+
+Van Allen Radiation Belts
+
+Geostationary Orbit Ring
+
+GOES Satellites
+
+Incoming Solar Wind
+
+Aurora Visualization
+
+Animated Electron Streams
+
+Subtle glowing orbit paths
+
+The Earth should slowly rotate.
+
+Radiation belts should change brightness depending on prediction.
+
+Solar wind particles should gently flow toward Earth.
+
+This should be the visual centerpiece of the application.
+
+---
+
+# Electron Flux Prediction
+
+Create a large scientific line chart.
+
+Display
+
+Historical Electron Flux
+
+Current Measurement
+
+30-minute Forecast
+
+45-minute Forecast
+
+6-hour Forecast
+
+12-hour Forecast
+
+Include:
+
+Prediction Line
+
+Confidence Interval
+
+Threshold Line
+
+Storm Region Highlight
+
+Hover Tooltips
+
+Zoom
+
+Pan
+
+Professional scientific styling.
+
+---
+
+# Live Telemetry Panel
+
+Display live scientific parameters.
+
+Electron Flux
+
+Proton Flux
+
+Solar Wind Speed
+
+Solar Wind Density
+
+IMF Bx
+
+IMF By
+
+IMF Bz
+
+Kp Index
+
+Dst Index
+
+AE Index
+
+X-ray Flux
+
+Flare Class
+
+Every value should include:
+
+Current Value
+
+Trend
+
+Status
+
+Timestamp
+
+---
+
+# AI Intelligence Panel
+
+Show AI reasoning.
+
+Current Storm Probability
+
+Classification
+
+Safe
+
+Minor
+
+Moderate
+
+Severe
+
+Critical
+
+Model Confidence
+
+Top Influencing Variables
+
+Explanation
+
+Recommended Actions
+
+Prediction Reliability
+
+Use expandable sections.
+
+Avoid large colored cards.
+
+---
+
+# Satellite Risk Assessment
+
+Display
+
+Surface Charging Risk
+
+Deep Dielectric Charging
+
+Solar Panel Exposure
+
+Communication Risk
+
+Navigation Risk
+
+Overall Satellite Safety Score
+
+Include professional horizontal risk indicators.
+
+---
+
+# Historical Replay
+
+Interactive timeline.
+
+Allow users to replay historical solar storms.
+
+Examples:
+
+Halloween Storm
+
+Carrington Event Simulation
+
+March 1989 Storm
+
+Recent Geomagnetic Storm
+
+Moving the timeline should animate:
+
+Earth
+
+Radiation Belt
+
+Graphs
+
+Predictions
+
+Risk Indicators
+
+---
+
+# Research Explorer
+
+Allow users to explore raw scientific datasets.
+
+Variables
+
+Electron Flux
+
+Solar Wind
+
+IMF
+
+Kp
+
+Dst
+
+AE
+
+Proton Flux
+
+Temperature
+
+Density
+
+Users can toggle variables.
+
+Graphs update dynamically.
+
+---
+
+# AI Model Panel
+
+Display technical model information.
+
+Storm Classifier
+
+Transformer Regressor
+
+Training Dataset
+
+Prediction Window
+
+Current Sequence Length
+
+Inference Time
+
+Validation Metrics
+
+Model Version
+
+Last Training Date
+
+Hardware Information
+
+This panel should look like software used by researchers.
+
+---
+
+# Notification Center
+
+Display live mission events.
+
+Examples
+
+Incoming CME Detected
+
+Solar Wind Increased
+
+Geomagnetic Storm Warning
+
+Prediction Updated
+
+GOES Data Stream Connected
+
+Recent Alerts
+
+Minimal and professional.
+
+---
+
+# Footer
+
+System Status
+
+API Connection
+
+Data Source Status
+
+Model Health
+
+Version Number
+
+Latency
+
+Copyright
+
+---
+
+# Animations
+
+Use subtle animations only.
+
+Earth rotates slowly.
+
+Solar particles drift naturally.
+
+Charts animate smoothly.
+
+Numbers transition elegantly.
+
+Hover interactions reveal detailed telemetry.
+
+No flashy effects.
+
+---
+
+# Technical Stack
+
+Frontend
+
+React
+
+TypeScript
+
+Tailwind CSS
+
+Framer Motion
+
+Three.js
+
+React Three Fiber
+
+React Query
+
+Recharts
+
+MapLibre (optional)
+
+Backend
+
+FastAPI
+
+Python
+
+WebSocket for live updates
+
+---
+
+# Responsive Behaviour
+
+Desktop-first.
+
+Large monitors should resemble mission-control software.
+
+Tablet support is secondary.
+
+Mobile should show simplified scientific panels without losing readability.
+
+---
+
+# Overall Experience
+
+The final interface should immediately communicate:
+
+"This is a professional aerospace research platform used for monitoring and predicting hazardous space weather events."
+
+The design should feel premium, scientific, calm, and technically sophisticated rather than flashy or entertainment-focused. Every visualization should serve a purpose, every panel should present actionable scientific information, and the entire experience should resemble the operational software found in a real satellite mission control center.

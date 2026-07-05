@@ -1,0 +1,27 @@
+.git
+.gitignore
+.agents
+.canvas
+.gemini
+venv/
+node_modules/
+datasets/
+outputs/
+saved_models/
+notebooks/
+scripts/
+tests/
+artifacts/
+attached_assets/
+reports/
+pipeline.log
+pnpm-lock.yaml
+pnpm-workspace.yaml
+package.json
+tsconfig*.json
+README.md
+replit.md
+Space Weather Early Warning System.pdf
+Space_Weather_PDF_Content.txt
+Dockerfile
+.dockerignore

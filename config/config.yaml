@@ -1,0 +1,61 @@
+# Space Weather Early Warning System (SWEWS) Configuration
+# Single source of truth for all model + pipeline parameters.
+
+project:
+  name: "Space Weather Early Warning System"
+  version: "1.0.0"
+  institution: "National Space Weather Center"
+
+data:
+  raw_dir: "datasets/raw"
+  processed_dir: "datasets/processed"
+  target_frequency: "5T"  # 5 Minutes interval
+  target_flux_col: "electron_flux_2mev"
+
+  classification_thresholds:
+    moderate: 1000.0  # pfu
+    severe: 10000.0   # pfu
+
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+# Forecast horizons expressed in number of steps at target_frequency (5T).
+# Used by feature_engineering, train_pipeline, inference, and the API.
+forecast:
+  horizons_steps: [6, 9, 72, 144]  # 30m, 45m, 6h, 12h
+  horizon_labels: ["30_min", "45_min", "6_hours", "12_hours"]
+  quantiles: [0.1, 0.5, 0.9]
+  quantile_labels: ["p10", "p50", "p90"]
+
+# Class label mapping (used by classifier, inference, and UI).
+classes:
+  num_classes: 3
+  index_to_label: {0: "Safe", 1: "Moderate", 2: "Severe"}
+
+model_1_classifier:
+  d_model: 64
+  nhead: 4
+  num_layers: 3
+  dim_feedforward: 128
+  dropout: 0.1
+  epochs: 50
+  lr: 0.001
+  batch_size: 64
+  patience: 7
+
+model_2_tft_regressor:
+  d_model: 64
+  nhead: 4
+  num_layers: 2
+  dropout: 0.15
+  quantiles: [0.1, 0.5, 0.9]
+  horizons: [6, 9, 72, 144]  # 30m, 45m, 6h, 12h at 5-min intervals
+  epochs: 50
+  lr: 0.001
+  batch_size: 64
+  patience: 7
+
+logging:
+  level: "INFO"
+  log_file: "outputs/pipeline.log"

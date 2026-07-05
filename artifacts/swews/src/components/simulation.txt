@@ -1,0 +1,90 @@
+A few final tweaks I would make:
+
+1. Move Earth slightly left
+
+Right now:
+
+?? ---------------------- ??
+                         |
+                         tail has little room
+
+Move:
+
+cx = width * 0.68
+
+to maybe:
+
+cx = width * 0.62
+
+Give the magnetotail more breathing space.
+
+2. More elliptical magnetic shells
+
+Currently the tail looks good, but the front loops are a little too circular.
+
+Make front compressed:
+
+Current:
+
+  ((((??==========
+
+
+Better:
+
+    (((??================
+   ((( ??================
+    (((??================
+
+Increase X stretch behind Earth.
+
+3. Add solar wind "impact bending"
+
+Your streams currently:
+
+==============
+
+      ??
+
+==============
+
+Need slightly more:
+
+========\
+          \ ??
+========/
+
+Near bow shock:
+
+deflection *= dynamic_pressure;
+4. During storms make particles accelerate
+
+Right now calm looks great.
+
+When storm probability jumps:
+
+particleSpeed =
+baseSpeed * (1 + intensity * 3)
+
+Make the user FEEL:
+
+"something bad is coming"
+
+5. Tiny detail: rename neutron
+
+In actual solar wind context, free neutrons are not a major component because they decay quickly. For scientific accuracy maybe:
+
+?? Proton
+?? Electron
+? High-energy neutral particle / cosmic particle
+
+Small thing, not UI-breaking.
+
+But Max, compare your first screenshot to this:
+
+First:
+
+static textbook
+
+Now:
+
+NOAA operator watching solar plasma arrive

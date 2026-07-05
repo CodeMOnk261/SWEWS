@@ -1,0 +1,97 @@
+import time
+import requests
+import json
+import os
+
+# Configure state storage to persist tracking values across script runs
+STATE_FILE = "swews_bot_state.json"
+LAST_ALERT_TIME = 0
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        try:
+            with open(STATE_FILE, "r") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"last_sent_probability": 0}
+
+def save_state(state):
+    try:
+        with open(STATE_FILE, "w") as f:
+            json.dump(state, f)
+    except Exception:
+        pass
+
+def check_and_send_alert(probability, telemetry_data):
+    global LAST_ALERT_TIME
+    
+    state = load_state()
+    last_prob = state.get("last_sent_probability", 0)
+    THRESHOLD = 20
+    
+    # 1. Evaluate warning thresholds & state changes
+    if probability >= THRESHOLD:
+        # Case 1: Crossed threshold (initial alert)
+        if last_prob == 0:
+            title = "🚨 SWEWS Warning: Elevated Risk Detected"
+            color = 15158332  # Orange warning
+            content = f"🚨 **SPACE WEATHER ALERT: {probability}% STORM PROBABILITY** 🚨"
+            bypass_cooldown = True
+        # Case 2: Risk increased
+        elif probability > last_prob:
+            title = "📈 SWEWS Escalation: Storm Risk Increased"
+            color = 13632027  # Red warning
+            content = f"📈 **SPACE WEATHER UPDATE: RISK INCREASED TO {probability}%** (previously {last_prob}%) 📈"
+            bypass_cooldown = False
+        # Case 3: Risk decreased or remained same
+        else:
+            return  # Exit silently - do not spam if probability didn't increase
+            
+        state["last_sent_probability"] = probability
+    else:
+        # Case 4: Clear alert (dropped below threshold)
+        if last_prob > 0:
+            title = "✅ SWEWS Normalization: Risk Cleared"
+            color = 3066993  # Green clear
+            content = f"✅ **SPACE WEATHER CLEAR: Risk normalized to {probability}%** (below warning threshold) ✅"
+            bypass_cooldown = True
+            state["last_sent_probability"] = 0
+        else:
+            return  # Exit silently - risk remains nominal
+
+    # 2. Check the 30-minute cooldown (1800 seconds)
+    # (Escalation alerts follow cooldown, initial warning and clears bypass it for safety)
+    current_time = time.time()
+    if not bypass_cooldown and (current_time - LAST_ALERT_TIME < 1800):
+        print("Alert triggered, but suppressed by active 30-minute cooldown.")
+        return
+
+    # 3. Target your server's incoming integration port
+    WEBHOOK_URL = "https://discord.com/api/webhooks/1523014660989911218/AMoWs4Y3Xc618ERltfJMY0dj8Or_ruMlTxSjN8aft45JbOsY_bm6JD1mPTpF9VmO7wV4"
+    
+    payload = {
+        "content": content,
+        "embeds": [{
+            "title": title,
+            "color": color,
+            "fields": [
+                {"name": "Solar Wind Speed", "value": f"{telemetry_data['speed']:.1f} km/s", "inline": True},
+                {"name": "IMF Bz", "value": f"{telemetry_data['bz']:.1f} nT", "inline": True},
+                {"name": "Kp Index", "value": f"{telemetry_data['kp']}", "inline": True}
+            ],
+            "footer": {"text": "Space Weather Early Warning System"}
+        }]
+    }
+    
+    # 4. Attempt transmission to Discord
+    try:
+        response = requests.post(WEBHOOK_URL, json=payload, timeout=5)
+        if response.status_code in (200, 204):
+            print(f"Alert successfully sent to Discord! (Prob: {probability}%)")
+            LAST_ALERT_TIME = current_time
+            save_state(state)
+        else:
+            print(f"Discord responded with an error status: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Network transport error failing alert delivery: {e}")

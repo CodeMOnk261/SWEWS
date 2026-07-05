@@ -1,0 +1,584 @@
+--- PAGE 1 ---
+Space Weather Early Warning System (SWEWS)
+AI-Based Prediction of Energetic Electron Flux at Geostationary
+Orbit
+Version
+Implementation Blueprint v1.0
+1. Project Overview
+Problem Statement
+Modern communication, navigation, defense, and weather satellites operate in Geostationary Earth Orbit
+(GEO), where they are continuously exposed to energetic electrons trapped within Earth's magnetosphere.
+During solar storms, electron ﬂux can increase rapidly, causing:
+Surface charging
+Deep dielectric charging
+Single Event Upsets (SEUs)
+Solar panel degradation
+Communication failures
+Satellite subsystem damage
+The objective of this project is to develop an Artiﬁcial Intelligence based Space Weather Early Warning
+System capable of predicting energetic electron ﬂuxes before hazardous radiation events occur .
+The system should provide reliable forecasts for:
+30 minutes ahead
+45 minutes ahead
+6 hours ahead
+12 hours ahead
+Unlike traditional forecasting methods, the proposed system combines physics-based space weather
+observations with modern Transformer-based deep learning models and a hybrid prediction strategy.
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+1
+
+--- PAGE 2 ---
+2. Objectives
+Primary Objectives
+Predict energetic electron ﬂux at GEO.
+Forecast multiple future horizons.
+Detect incoming radiation storms before they occur .
+Estimate storm intensity.
+Provide conﬁdence scores.
+Generate satellite risk levels.
+Secondary Objectives
+Real-time monitoring dashboard.
+Live data ingestion.
+Automatic prediction pipeline.
+Explainable AI.
+Research-grade architecture.
+3. High-Level System Architecture
+                            ┌────────────────────────┐
+                            │  NOAA GOES Satellites  │
+                            └──────────┬─────────────┘
+                                       │
+                            Electron Flux
+                            Proton Flux
+                            X-Ray Flux
+                                       │
+                            ┌────────────────────────┐
+                            │ NASA OMNI Database     │
+                            └──────────┬─────────────┘
+                                       │
+                     Solar Wind
+                     IMF
+                     Kp
+                     Dst
+                     AE
+                                       │
+                            ┌────────────────────────┐
+                            │ Solar Observatory Data │
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+2
+
+--- PAGE 3 ---
+                            └──────────┬─────────────┘
+                                       │
+                            Solar Flares
+                            Sunspots
+                            CME Alerts
+                                       │
+                    ==================================
+                           Data Collection Layer
+                    ==================================
+                                       │
+                             Data Validation
+                                       │
+                             Missing Value Fix
+                                       │
+                          Time Synchronization
+                                       │
+                          Feature Engineering
+                                       │
+                     ===========================
+                         Hybrid AI Engine
+                     ===========================
+                      ┌─────────────────────┐
+                      │ Model 1             │
+                      │ Storm Classifier    │
+                      └─────────┬───────────┘
+                                │
+                    Storm Probability
+                                │
+                      ┌─────────────────────┐
+                      │ Model 2             │
+                      │ Flux Predictor      │
+                      └─────────┬───────────┘
+3
+
+--- PAGE 4 ---
+                                │
+               30 min
+               45 min
+               6 hr
+               12 hr Forecasts
+                                │
+                  Risk Assessment Engine
+                                │
+                  Dashboard + API + Alerts
+4. Why Hybrid AI?
+Instead of solving one diﬃcult regression problem, the system separates prediction into two stages.
+Model 1
+Storm Classiﬁcation
+Purpose
+Predict whether a signiﬁcant radiation enhancement will occur .
+Output
+Safe
+Moderate
+Severe
+Suggested Models
+XGBoost (baseline)
+LightGBM
+Temporal Fusion Transformer
+Transformer Encoder
+Evaluation
+Precision
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+4
+
+--- PAGE 5 ---
+Recall
+F1-score
+ROC-AUC
+Model 2
+Flux Regression
+Runs after Model 1.
+Purpose
+Predict exact electron ﬂux values.
+Outputs
+Flux after 30 minutes
+Flux after 45 minutes
+Flux after 6 hours
+Flux after 12 hours
+Suggested Models
+PatchTST
+Informer
+Temporal Fusion Transformer (preferred)
+TimesFM (research evaluation)
+LSTM (baseline comparison)
+Evaluation
+MAE
+RMSE
+MAPE
+Pearson Correlation
+5. Dataset Sources
+Primary Sources
+NOAA GOES
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+1. 
+5
+
+--- PAGE 6 ---
+Data
+Electron Flux
+Proton Flux
+X-Ray Flux
+Magnetometer
+Oﬃcial Source
+urlNOAA Space Weather Prediction Centerhttps://www.swpc.noaa.gov/
+NASA OMNI Dataset
+Data
+Solar Wind Speed
+Density
+IMF
+Kp
+Dst
+AE
+Oﬃcial Source
+urlNASA OMNIWebhttps://omniweb.gsfc.nasa.gov/
+NASA CDAWeb
+Historical spacecraft observations.
+Oﬃcial Source
+urlNASA CDAWebhttps://cdaweb.gsfc.nasa.gov/
+NOAA Solar Data
+Solar Flares
+X-Ray Events
+Alerts
+Oﬃcial Source
+urlNOAA SWPC Data Serviceshttps://services.swpc.noaa.gov/
+• 
+• 
+• 
+• 
+1. 
+• 
+• 
+• 
+• 
+• 
+• 
+1. 
+1. 
+2. 
+3. 
+4. 
+6
+
+--- PAGE 7 ---
+NASA DSCOVR
+Solar wind observations.
+Oﬃcial Source
+urlNASA DSCOVR Missionhttps://www.nasa.gov/mission/dscovr/
+6. Features
+Electron Measurements
+Electron Flux (>2 MeV)
+Electron Flux (>800 keV)
+Proton Measurements
+Proton Flux
+Energy Channels
+Solar Wind
+Velocity
+Density
+Temperature
+Dynamic Pressure
+Interplanetary Magnetic Field
+Bx
+By
+Bz
+Total Magnetic Field
+Geomagnetic Indices
+Kp
+Dst
+1. 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+7
+
+--- PAGE 8 ---
+AE
+SYM-H (optional)
+Solar Activity
+X-Ray Flux
+Flare Class
+CME Indicator
+Sunspot Number
+Engineered Features
+Rolling Mean
+Rolling Standard Deviation
+Rate of Change
+Lag Features
+Moving Maximum
+Moving Minimum
+Exponential Moving Average
+Storm Persistence Window
+7. Project Directory
+space-weather-ai/
+│
+├── README.md
+├── requirements.txt
+├── config/
+• 
+• 
+• 
+• 
+• 
+• 
+8
+
+--- PAGE 9 ---
+│   ├── config.yaml
+│   ├── constants.py
+│
+├── datasets/
+│   ├── raw/
+│   ├── processed/
+│   ├── external/
+│
+├── notebooks/
+│   ├── 01_EDA.ipynb
+│   ├── 02_Feature_Engineering.ipynb
+│   ├── 03_Model_Training.ipynb
+│
+├── src/
+│   ├── ingestion/
+│   │      goes_loader.py
+│   │      omni_loader.py
+│   │      dscovr_loader.py
+│   │      solar_loader.py
+│   ├── preprocessing/
+│   │      clean.py
+│   │      synchronize.py
+│   │      feature_engineering.py
+│   ├── models/
+│   │      classifier.py
+│   │      transformer.py
+│   │      trainer.py
+│   │      inference.py
+│   ├── evaluation/
+│   │      metrics.py
+│   │      visualization.py
+│   ├── api/
+│   │      app.py
+9
+
+--- PAGE 10 ---
+│   │      routes.py
+│   ├── dashboard/
+│   │      streamlit_app.py
+│   └── utils/
+│          logger.py
+│          config.py
+│
+├── saved_models/
+├── outputs/
+├── reports/
+├── tests/
+└── docs/
+8. Machine Learning Pipeline
+Data Collection
+↓
+Cleaning
+↓
+Time Alignment
+↓
+Missing Value Handling
+↓
+Feature Engineering
+↓
+10
+
+--- PAGE 11 ---
+Train/Test Split
+↓
+Storm Classiﬁcation
+↓
+Flux Prediction
+↓
+Evaluation
+↓
+Model Export
+↓
+API Deployment
+↓
+Dashboard
+9. Technology Stack
+Language
+Python
+Libraries
+NumPy
+Pandas
+PyTorch
+Lightning (optional)
+Scikit-learn
+XGBoost
+LightGBM
+Hugging Face Transformers (where applicable)
+Darts / GluonTS (evaluation)
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+11
+
+--- PAGE 12 ---
+Streamlit
+FastAPI
+Plotly
+Storage
+Parquet
+SQLite (development)
+PostgreSQL (production)
+Deployment
+Docker
+FastAPI
+Streamlit
+GitHub Actions
+10. Expected Outputs
+The system will generate:
+Current Radiation Status
+30-minute Forecast
+45-minute Forecast
+6-hour Forecast
+12-hour Forecast
+Storm Probability
+Conﬁdence Score
+Satellite Risk Level
+Feature Importance
+Historical Comparison
+Interactive Dashboard
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+12
+
+--- PAGE 13 ---
+11. Team Work Strategy
+Member A — Data & Infrastructure
+Responsibilities
+Collect datasets
+Build ingestion scripts
+Data cleaning
+Time synchronization
+Feature engineering
+Dataset versioning
+Database management
+API integration
+Deliverables
+Clean datasets
+Feature matrix
+Automated data pipeline
+Member B — AI & Modeling
+Responsibilities
+Exploratory Data Analysis
+Storm classiﬁer
+Transformer implementation
+Hyperparameter tuning
+Model evaluation
+Inference pipeline
+Dashboard integration
+Deliverables
+Trained models
+Evaluation reports
+Prediction API
+Joint Responsibilities
+Architecture design
+Documentation
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+13
+
+--- PAGE 14 ---
+Research validation
+Testing
+Final presentation
+Demo preparation
+12. Milestone Plan
+Phase 1
+Literature review
+Dataset acquisition
+Repository setup
+Phase 2
+Data preprocessing
+Exploratory analysis
+Feature engineering
+Phase 3
+Baseline models
+Classiﬁcation pipeline
+Regression pipeline
+Phase 4
+Transformer implementation
+Multi-horizon forecasting
+Model optimization
+Phase 5
+FastAPI integration
+Dashboard development
+Live prediction
+Phase 6
+Performance benchmarking
+Documentation
+Final presentation
+Research paper draft (optional)
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+14
+
+--- PAGE 15 ---
+13. Final Deliverable
+A production-ready AI-powered Space Weather Early Warning System capable of continuously ingesting live
+space weather observations, detecting the likelihood of hazardous radiation storms, forecasting energetic
+electron ﬂux at multiple future horizons, estimating satellite risk levels, and presenting results through an
+interactive dashboard and API suitable for research, demonstration, and operational decision support.
+15
+
